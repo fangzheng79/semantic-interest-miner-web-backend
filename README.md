@@ -11,7 +11,7 @@ Please put the converted file in the root directory of this folder.
 
 
 
-## Steps to run application using docker
+## Steps to run application using docker:
 
 Install docker https://docs.docker.com/get-docker/
 
