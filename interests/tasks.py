@@ -206,3 +206,20 @@ def import_user_data(user_id):
 
     print("compute long term model")
     generate_long_term_model(user_id)
+
+
+
+
+@task(
+    name="import_user_paperdata",
+    base=BaseCeleryTask,
+    autoretry_for=(Exception,),
+    retry_kwargs={'max_retries': 5, 'countdown': 30 * 60},
+)
+def import_user_paperdata(user_id):
+
+    print("compute short term model")
+    __update_short_term_interest_model_for_user(user_id)
+
+    print("compute long term model")
+    generate_long_term_model(user_id)

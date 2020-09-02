@@ -36,12 +36,19 @@ from .models import (
 )
 from accounts.models import User
 from .utils import get_interest_similarity_score, get_top_long_term_interest_by_weight, get_top_short_term_interest_by_weight, get_radar_similarity_data, get_heat_map_data, get_venn_chart_data
-from interests.tasks import import_user_data
+from interests.tasks import import_user_data,import_user_paperdata
 
 class TriggerDataUpdate(APIView):
     def post(self, request, *args, **kwargs):
         import_user_data.delay(request.user.id)
         return Response({})
+
+
+class TriggerPaperUpdate(APIView):
+    def post(self, request, *args, **kwargs):
+        import_user_paperdata.delay(request.user.id)
+        return Response({})
+
 
 
 class LongTermInterestView(ListCreateAPIView):
