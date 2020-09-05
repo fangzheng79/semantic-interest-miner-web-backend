@@ -6,3 +6,4 @@
 db.sqlite3
 static/*
 datatest_word2vec.txt
+.DS_Store
